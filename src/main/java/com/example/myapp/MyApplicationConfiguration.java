@@ -3,12 +3,12 @@ package com.example.myapp;
 import io.dropwizard.core.Configuration;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import io.dropwizard.db.DataSourceFactory;
-import jakarta.validation.Valid; // <--- МАЄ БУТИ jakarta.validation.Valid
-import jakarta.validation.constraints.NotNull; // <--- МАЄ БУТИ jakarta.validation.constraints.NotNull
+import jakarta.validation.Valid; 
+import jakarta.validation.constraints.NotNull;
 
 public class MyApplicationConfiguration extends Configuration {
-    @Valid // Ця анотація тепер повинна розпізнаватися
-    @NotNull // Ця анотація тепер повинна розпізнаватися
+    @Valid
+    @NotNull 
     private DataSourceFactory database = new DataSourceFactory();
 
     @JsonProperty("database")

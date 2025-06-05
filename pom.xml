@@ -6,16 +6,15 @@
     <groupId>com.example</groupId>
     <artifactId>my-dropwizard-app</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <packaging>jar</packaging> <!-- Dropwizard використовує jar -->
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>11</maven.compiler.source>
         <maven.compiler.target>11</maven.compiler.target>
-        <dropwizard.version>4.0.7</dropwizard.version> <!-- Або актуальна версія Dropwizard -->
-        <mysql.connector.version>8.0.33</mysql.connector.version> <!-- Або актуальна версія MySQL Connector -->
+        <dropwizard.version>4.0.7</dropwizard.version>
+        <mysql.connector.version>8.0.33</mysql.connector.version> 
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <!-- Головний клас вашого Dropwizard застосунку -->
         <mainClass>com.example.myapp.MyApplication</mainClass>
     </properties>
 
@@ -39,47 +38,25 @@
         <dependency>
             <groupId>io.dropwizard</groupId>
             <artifactId>dropwizard-hibernate</artifactId>
-            <!-- Версія керується через dropwizard-dependencies -->
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
-            <artifactId>dropwizard-jackson</artifactId> <!-- Для роботи з JSON, часто йде транзитивно з core -->
+            <artifactId>dropwizard-jackson</artifactId>
         </dependency>
         <dependency>
             <groupId>io.dropwizard</groupId>
-            <artifactId>dropwizard-validation</artifactId> <!-- Для валідації -->
+            <artifactId>dropwizard-validation</artifactId>
         </dependency>
 
-        <!-- MySQL Connector -->
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
             <version>${mysql.connector.version}</version>
         </dependency>
 
-        <!-- SLF4J API та Logback (Dropwizard використовує їх для логування) -->
-        <!-- Ці залежності зазвичай транзитивно включаються через dropwizard-core -->
-        <!--
-        <dependency>
-            <groupId>org.slf4j</groupId>
-            <artifactId>slf4j-api</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>ch.qos.logback</groupId>
-            <artifactId>logback-classic</artifactId>
-        </dependency>
-        -->
-
-        <!-- Якщо ви використовуєте Jakarta Persistence API анотації (@Entity, @Table etc.)
-             dropwizard-hibernate вже має принести jakarta.persistence-api.
-             Переконайтеся, що версія сумісна.
-        -->
         <dependency>
             <groupId>jakarta.persistence</groupId>
             <artifactId>jakarta.persistence-api</artifactId>
-            <!-- Версія зазвичай керується dropwizard-hibernate,
-                 але якщо виникають проблеми, можна вказати явно,
-                 наприклад, 3.1.0, як у вашому прикладі, перевіривши сумісність. -->
         </dependency>
 
     </dependencies>
@@ -89,7 +66,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.11.0</version> <!-- Оновіть версію плагіна -->
+                <version>3.11.0</version> 
                 <configuration>
                     <source>${maven.compiler.source}</source>
                     <target>${maven.compiler.target}</target>
@@ -98,7 +75,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.5.1</version> <!-- Або актуальна версія -->
+                <version>3.5.1</version>
                 <configuration>
                     <createDependencyReducedPom>true</createDependencyReducedPom>
                     <filters>
