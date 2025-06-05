@@ -27,6 +27,10 @@ import java.util.Objects;
     @NamedQuery(
         name = "com.example.myapp.core.User.findByEmail",
         query = "SELECT u FROM User u WHERE u.email = :email"
+    ),
+    @NamedQuery(
+        name = "com.example.myapp.core.User.findByPhone",
+        query = "SELECT u FROM User u WHERE u.phone = :phone"
     )
 })
 public class User {
@@ -47,7 +51,7 @@ public class User {
     private String email;
 
     @Length(max = 25)
-    @Column(name = "phone", nullable = true)
+    @Column(name = "phone", nullable = true, unique = true)
     private String phone;
 
     @NotBlank

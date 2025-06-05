@@ -3,7 +3,7 @@ package com.example.myapp.db;
 import com.example.myapp.core.User;
 import io.dropwizard.hibernate.AbstractDAO;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query; // Важливо: org.hibernate.query.Query
+import org.hibernate.query.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -26,20 +26,23 @@ public class UserDAO extends AbstractDAO<User> {
     }
 
     public Optional<User> findByEmail(String email) {
-        // Використовуємо named query для пошуку за email
         Query<User> query = namedTypedQuery("com.example.myapp.core.User.findByEmail");
         query.setParameter("email", email);
-        return Optional.ofNullable(uniqueResult(query)); // uniqueResult може повернути null
+        return Optional.ofNullable(uniqueResult(query)); 
+    }
+
+    public Optional<User> findByPhone(String phone) {
+        Query<User> query = namedTypedQuery("com.example.myapp.core.User.findByPhone");
+        query.setParameter("phone", phone);
+        return Optional.ofNullable(uniqueResult(query));
     }
 
     public User update(User user) {
-        // persist також оновлює, якщо сутність вже існує в контексті персистентності
-        // або якщо вона detached, але має ідентифікатор та версію (якщо використовується @Version)
         return persist(user);
     }
 
     public void delete(User user) {
-        currentSession().remove(user); // Використовуйте remove для JPA 2.1+ сумісності
+        currentSession().remove(user);
     }
 
     public void deleteById(Long id) {

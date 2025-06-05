@@ -31,7 +31,11 @@ public class UserResource {
                            .entity("User with email " + user.getEmail() + " already exists.")
                            .build();
         }
-        // Тут об'єкт User вже має поле 'name', встановлене через Jackson при десеріалізації
+        if (userDAO.findByPhone(user.getPhone()).isPresent()) {
+            return Response.status(Response.Status.CONFLICT)
+                           .entity("User with phone " + user.getPhone() + " already exists.")
+                           .build();
+        }
         User createdUser = userDAO.create(user);
         return Response.status(Response.Status.CREATED).entity(createdUser).build();
     }
@@ -63,7 +67,7 @@ public class UserResource {
                                .build();
             }
 
-            existingUser.setName(userUpdate.getName()); // <--- ЗМІНЕНО
+            existingUser.setName(userUpdate.getName());
             existingUser.setEmail(userUpdate.getEmail());
             User updatedUser = userDAO.update(existingUser);
             return Response.ok(updatedUser).build();
