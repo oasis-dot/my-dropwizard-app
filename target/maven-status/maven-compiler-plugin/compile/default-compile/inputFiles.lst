@@ -1,0 +1,5 @@
+/home/oasis/java_spring/my-dropwizard-app/src/main/java/com/example/myapp/core/User.java
+/home/oasis/java_spring/my-dropwizard-app/src/main/java/com/example/myapp/resources/UserResource.java
+/home/oasis/java_spring/my-dropwizard-app/src/main/java/com/example/myapp/MyApplication.java
+/home/oasis/java_spring/my-dropwizard-app/src/main/java/com/example/myapp/db/UserDAO.java
+/home/oasis/java_spring/my-dropwizard-app/src/main/java/com/example/myapp/MyApplicationConfiguration.java

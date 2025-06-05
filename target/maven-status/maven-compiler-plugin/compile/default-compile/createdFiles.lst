@@ -1,0 +1,6 @@
+com/example/myapp/resources/UserResource.class
+com/example/myapp/db/UserDAO.class
+com/example/myapp/core/User.class
+com/example/myapp/MyApplication$1.class
+com/example/myapp/MyApplicationConfiguration.class
+com/example/myapp/MyApplication.class

@@ -1,5 +1,45 @@
----
+# Налаштування вашого застосунку (приклад)
+defaultName: My Dropwizard App with MySQL
+
+# Конфігурація бази даних для MySQL
+database:
+  # Драйвер для MySQL
+  driverClass: com.mysql.cj.jdbc.Driver
+  # URL підключення до вашої бази даних MySQL
+  # Замініть localhost, порт (3306 за замовчуванням), назву_бд, користувача та пароль
+  url: jdbc:mysql://localhost:3306/fruit?useSSL=false&serverTimezone=UTC
+  user: oasisis
+  password: Password1!
+  # Властивості для Hibernate та пулу з'єднань
+  properties:
+    # Діалект для MySQL 8+
+    hibernate.dialect: org.hibernate.dialect.MySQLDialect
+    # Або для старіших версій, наприклад, MySQL57Dialect
+    # hibernate.dialect: org.hibernate.dialect.MySQL57Dialect
+
+    # Автоматичне оновлення/створення схеми (обережно на продакшені!)
+    # 'validate': перевіряє схему, не змінюючи її.
+    # 'update': оновлює схему.
+    # 'create': видаляє попередню схему і створює нову при кожному запуску.
+    # 'create-drop': створює схему при запуску і видаляє при зупинці.
+    # 'none': нічого не робить.
+    hibernate.hbm2ddl.auto: update
+    # Показувати SQL запити в логах (корисно для розробки)
+    hibernate.show_sql: true
+    hibernate.format_sql: true # Робить SQL запити читабельнішими
+  # Налаштування пулу з'єднань (Dropwizard використовує HikariCP за замовчуванням)
+  maxWaitForConnection: 1s
+  validationQuery: "SELECT 1"
+  minSize: 8
+  maxSize: 32
+  checkConnectionWhileIdle: false
+  evictionInterval: 10s
+  minIdleTime: 1minute
+
+# Налаштування логування
 logging:
   level: INFO
   loggers:
-    com.example: DEBUG
+    com.example.myapp: DEBUG # Рівень логування для вашого пакету
+    org.hibernate.SQL: DEBUG # Для логування SQL запитів Hibernate
+    # org.hibernate.type.descriptor.sql: TRACE # Для логування значень параметрів запитів
